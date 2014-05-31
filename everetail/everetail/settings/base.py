@@ -55,6 +55,12 @@ DATABASES = {
 }
 ########## END DATABASE CONFIGURATION
 
+########## MAPQUEST CONFIGURATION
+MAPQUEST_KEY = "Fmjtd%7Cluur2da2nu%2Ca2%3Do5-9a85u6"
+
+MAPQUEST_BASE_URL = 'http://www.mapquestapi.com/search/v2/search-function-goes-here?key=' + MAPQUEST_KEY
+########## END MAPQUEST CONFIGURATION
+
 
 ########## GENERAL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#time-zone
@@ -194,6 +200,10 @@ DJANGO_APPS = (
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
+    'core',
+    "geoposition",
+    'django_extensions',
+    'south',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
