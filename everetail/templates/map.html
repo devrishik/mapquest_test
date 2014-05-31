@@ -1,0 +1,59 @@
+<html>
+<head>
+<script src="http://btilelog.access.mapquest.com/tilelog/transaction?transaction=script&
+key=Fmjtd%7Cluur2da2nu%2Ca2%3Do5-9a85u6&itk=true&v=5.3.s&ipkg=controls1,traffic&ipr=false"
+    type="text/javascript"></script>
+</head>
+<body>
+<div id="id_map" style="width: 1024px; height: 400px;"></div>
+<p>
+Lat: <input type="text" id="id_lat" onchange="map_js.onupdate_ll()" />
+Lon: <input type="text" id="id_lon" onchange="map_js.onupdate_ll()" />
+Zoom: <input type="text" id="id_zoom" onchange="map_js.onupdate_zoom()" />
+</p>
+<script type="text/javascript">
+map_js = {
+    e_lat : null,
+    e_lon : null,
+    e_map : null,
+    mq_map : null,
+
+    create : function() {
+        map_js.e_map = document.getElementById('id_map');
+        map_js.e_lat = document.getElementById("id_lat");
+        map_js.e_lon = document.getElementById("id_lon");
+        map_js.e_zoom = document.getElementById("id_zoom");
+
+        map_js.mq_map = new MQA.TileMap(map_js.e_map, 9,
+             new MQA.LatLng(43.648565, -79.385329), "map");
+        map_js.mq_map.addControl(new MQA.ZoomControl());
+        map_js.mq_map.addControl(new MQA.ViewControl());
+
+        MQA.EventManager.addListener(map_js.mq_map, "zoomend", map_js.onposition);
+        MQA.EventManager.addListener(map_js.mq_map, "dragend", map_js.onposition);
+
+        map_js.onposition();
+    },
+
+    onposition : function() {
+        var c = map_js.mq_map.getCenter();
+        map_js.e_lat.value = c.getLatitude();
+        map_js.e_lon.value = c.getLongitude();
+
+        var z = map_js.mq_map.getZoomLevel();
+        map_js.e_zoom.value = z;
+    },
+
+    onupdate_ll : function() {
+        map_js.mq_map.panToLatLng(new MQA.LatLng(map_js.e_lat.value, map_js.e_lon.value));
+    },
+
+    onupdate_zoom : function() {
+        map_js.mq_map.setZoomLevel(map_js.e_zoom.value);
+    },
+
+    end : 0
+};
+map_js.create();
+</script>
+</body>
