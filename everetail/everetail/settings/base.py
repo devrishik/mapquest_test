@@ -45,9 +45,9 @@ MANAGERS = ADMINS
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.',
-        'NAME': '',
-        'USER': '',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'everetail',
+        'USER': 'root',
         'PASSWORD': '',
         'HOST': '',
         'PORT': '',
@@ -58,7 +58,7 @@ DATABASES = {
 ########## MAPQUEST CONFIGURATION
 MAPQUEST_KEY = "Fmjtd%7Cluur2da2nu%2Ca2%3Do5-9a85u6"
 
-MAPQUEST_BASE_URL = 'http://www.mapquestapi.com/search/v2/search-function-goes-here?key=' + MAPQUEST_KEY
+MAPQUEST_BASE_URL = 'http://www.mapquestapi.com/geocoding/v1/address?key=' + MAPQUEST_KEY
 ########## END MAPQUEST CONFIGURATION
 
 

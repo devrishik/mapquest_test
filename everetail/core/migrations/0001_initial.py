@@ -26,7 +26,7 @@ class Migration(SchemaMigration):
             ('name', self.gf('django.db.models.fields.CharField')(max_length=100)),
             ('slug', self.gf('django_extensions.db.fields.AutoSlugField')(allow_duplicates=False, max_length=50, separator=u'-', blank=True, unique=True, populate_from='name', overwrite=False)),
             ('address', self.gf('django.db.models.fields.related.ForeignKey')(related_name='address', to=orm['core.Address'])),
-            ('position', self.gf('geoposition.fields.GeopositionField')(max_length=42)),
+            ('position', self.gf('geoposition.fields.GeopositionField')(max_length=42, blank=True)),
         ))
         db.send_create_signal(u'core', ['Outlet'])
 
@@ -55,7 +55,7 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'modified': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'blank': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'position': ('geoposition.fields.GeopositionField', [], {'max_length': '42'}),
+            'position': ('geoposition.fields.GeopositionField', [], {'max_length': '42', 'blank': 'True'}),
             'slug': ('django_extensions.db.fields.AutoSlugField', [], {'allow_duplicates': 'False', 'max_length': '50', 'separator': "u'-'", 'blank': 'True', 'unique': 'True', 'populate_from': "'name'", 'overwrite': 'False'})
         }
     }
